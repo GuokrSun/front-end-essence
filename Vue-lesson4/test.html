@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./animate.css">
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" name="" value="" v-model="msg">
+        <ul>
+            <transition-group enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
+                <li v-for="(item,index) in lists" :key="index">
+                    <!--目标是改变arr  -->
+                    {{item}}
+                </li>
+            </transition-group>
+        </ul>
+
+
+    </div>
+    <script type="text/javascript" src="./vue2.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "",
+                arr: [1,2,3,4,5]
+            },
+            computed: {
+                // 根据msg 的编号在arr中查询，然后在页面中显示，真正显示的是查询后的结果，我们要用到计算属性
+                lists: function() {
+                    var arr = [];
+                    // 这里是使用箭头函数来解决this指向问题
+                    this.arr.forEach((item) => {item.toString().includes(this.msg) && arr.push(item)})
+                    return arr;
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./animate.css">
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="app">
+    <button type="button" @click="flag=!flag">显示和隐藏</button>
+    <div class="box animated" v-show="flag" transition="fly">
+    </div>
+    </div>
+    <script type="text/javascript" src="./vue1.js"></script>
+    <script type="text/javascript">
+        
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                flag: true
+            },
+            transitions: {
+                fly: {
+                    enterClass: "fadeInDown",
+                    leaveClass: "bounceOutLeft"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

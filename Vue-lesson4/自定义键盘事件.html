@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" name="" value="" @keydown.f1="fn">
+    </div>
+    <script type="text/javascript" src="./vue1.js"></script>
+    <script type="text/javascript">
+        Vue.directive("on").keyCodes.f1 = 112;
+        //必须放在实例的前面
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "red"
+            },
+            methods: {
+                fn: function() {
+                    alert(1);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

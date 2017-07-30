@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: move;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div v-drag class="box">QQ对话框</div>
+    </div>
+    <script type="text/javascript" src="./vue2.js"></script>
+    <script type="text/javascript">
+        Vue.directive("drag", function (el) {
+            el.onmousedown = function (e) {
+                var curTop = e.pageY - el.offsetTop;
+                var curLeft = e.pageX - el.offsetLeft;
+                document.onmousemove = function (e) {
+                    var targetTop = e.pageY - curTop + "px";
+                    var targetLeft = e.pageX - curLeft + "px";
+                    el.style.top = targetTop;
+                    el.style.left = targetLeft;
+                    //这里没有写边界判断的
+                };
+                document.onmouseup = function (e) {
+                    document.onmouseup = document.onmousemove = null;
+                }
+                e.stopPropagation();
+                
+            }
+        })
+        //必须放在实例的前面
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "red"
+            }
+        })
+    </script>
+</body>
+
+</html>
