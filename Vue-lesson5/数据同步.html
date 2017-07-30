@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实现点击子类的数据不仅要让子类改变还有让父类有这个属性的也改变</title>
+</head>
+
+<body>
+    <div id="app">
+        <parent></parent>
+    </div>
+    <template id="ban">
+        <!--模板可以直接在上面定义然后直接用id引入  -->
+        <div>
+            <div>parentwu</div>{{msg}}
+            <child :str.sync="msg"></child>
+        </div>
+    </template>
+    <script type="text/javascript" src="./vue1.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            components: {
+                parent: {
+                    template: "#ban",
+                    data() {
+                        return {
+                            msg: "xianqiang"
+                        }
+                    },
+                    components: {
+                        child: {
+                            template: "<div @click='updata'>child{{str}}</div>",
+                            methods: {
+                                updata() {
+                                    // 在vue2.0中子组件是不允许更改父组件
+                                    this.str = "none"
+                                }
+                            },
+                            props:['str']
+                        }
+                        
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

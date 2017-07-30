@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <parent>
+            <div slot="nin">您好</div>
+            <div slot="hao">吗？</div>
+            <!--slot用属性来调换位置  -->
+        </parent>
+    </div>
+    <template id="ban">
+        <div>
+            <div>hello
+                <slot name="hao"></slot>
+                <slot name="nin"></slot>
+            </div>
+        </div>
+    </template>
+    <script type="text/javascript" src="./vue2.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            components: {
+                parent: {
+                    template: "#ban",
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

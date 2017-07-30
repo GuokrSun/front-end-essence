@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <hello></hello>
+    </div>
+    
+    <script type="text/javascript" src="./vue2.js"></script>
+    <script type="text/javascript">
+        // var et = Vue.extend({
+        //     template: "<h1>您好</h1>"
+        // })
+        // Vue.component("hello",et);
+        //可以简写
+        
+        var vm = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            components: {
+                hello: {
+                    template:"<h1>您好</h1>"
+                }
+            }
+        })
+        
+    </script>
+</body>
+
+</html>

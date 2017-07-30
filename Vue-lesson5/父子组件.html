@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <parent>
+            <!-- <child></child> -->
+        </parent>
+    </div>
+    <template id="ban">
+        <!--模板可以直接在上面定义然后直接用id引入  -->
+        <div>
+            <div>parent</div>
+            <child></child>
+        </div>
+    </template>
+    <script type="text/javascript" src="./vue2.js"></script>
+    <script type="text/javascript">
+        // var et = Vue.extend({
+        //     template: "<h1>您好</h1>"
+        // })
+        // Vue.component("hello",et);
+        //可以简写
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            components: {
+                parent: {
+                    template: "#ban",
+                    components: {
+                        child: {
+                            template: "<div>child</div>",
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

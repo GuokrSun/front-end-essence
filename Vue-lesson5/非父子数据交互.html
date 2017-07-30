@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <parent></parent>
+        <child></child>
+    </div>
+    <template id="ban">
+        <div>
+            <div>hello <button type="button" @click="send">发送数据</button></div>
+        </div>
+    </template>
+    <!--事件vuex  -->
+    <template id="mo">
+        <div>
+            <div>您好 {{msg}}</div>
+        </div>
+    </template>
+    <script type="text/javascript" src="./vue2.js"></script>
+    <script type="text/javascript">
+        var Event = new Vue;
+        var vm = new Vue({
+            el: "#app",
+            data: {
+            },
+            components: {
+                parent: {
+                    template: "#ban",
+                    data() {
+                        return {
+                            msg: "信息"
+                        }
+                    },
+                    methods: {
+                        send() {
+                            Event.$emit("wo", this.msg)
+                        }
+                    }
+                },
+                child: {
+                    mounted() {
+                        Event.$on("wo", (data) => {
+                            this.msg = data
+                        })
+                    },
+                    data() {
+                        return {
+                            msg: ""
+                        }
+                    },
+                    template: "#mo"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
