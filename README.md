@@ -8,7 +8,8 @@
 ```js
 var utils = {
     listToArray: function(likeArray){
-        var ary = [];
+    // 类数组转换为数组
+        var ary = [];
         try {
             ary = Array.prototype.slice.call(likeArray);
         } catch (e) {
@@ -17,6 +18,10 @@ var utils = {
             }
         }
         return ary;
+    },
+    jsonParse = function (str) {
+    // JSON格式的字符串转为为JSON格式的对象
+        return "JSON" in window ? JSON.parse(str) : eval("(" + str + ")")
     }
 }
 ```
