@@ -1,13 +1,53 @@
 # Web前端精髓
 
-前端与移动开发 The front-end development [博客|Hexo](https://wuxianqiang.github.io/) [博客|CSDN](http://blog.csdn.net/wu_xianqiang) [博客|博客园](http://www.cnblogs.com/wuxianqiang/) [知乎|专栏](https://zhuanlan.zhihu.com/webqianduan)
-
-## 目录
-
-### 知识大全
-
-1. [GitHub秘籍](https://github.com/tiimgreen/github-cheat-sheet/blob/master/README.zh-cn.md#markdown-%E6%96%87%E4%BB%B6%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE)
-2. [七天学会NodeJS](http://nqdeng.github.io/7-days-nodejs/)
-3. [构建单页Web应用](https://github.com/xufei/blog/issues/5)
+```js
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <parent></parent>
+    </div>
+    <template id="ban">
+        <!--模板可以直接在上面定义然后直接用id引入  -->
+        <div>
+            <div>parentwu</div>
+            <!-- 传递数据 -->
+            <child :str="msg"></child>
+        </div>
+    </template>
+    <script type="text/javascript" src="./vue2.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: "#app",
+            data: {
+            },
+            components: {
+                parent: {
+                    template: "#ban",
+                    data() {
+                        return {
+                            msg: "xianqiang"
+                        }
+                    },
+                    components: {
+                        child: {
+                            template: "<div>child{{str}}</div>",
+                            // 接收数据
+                            props:['str']
+                        }             
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
+```
 
 > 支持作者请点击右上角的Star按钮
