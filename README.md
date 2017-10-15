@@ -392,7 +392,7 @@ var utils = (function () {
         var argTwo = arguments[1];
         if (typeof argTwo === "string") {
             var argThree = arguments[2];
-            if (argThree === "undefined") {
+            if (typeof argThree === "undefined") {
                 return this.getCss.apply(ele, arguments);
             }
             this.setCss.apply(ele, arguments);
