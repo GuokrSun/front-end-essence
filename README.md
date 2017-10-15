@@ -6,6 +6,11 @@
 var utils = (function () {
     var flag = "getComputedStyle" in window;
 
+    /**
+     * @param {element} ele 元素
+     * @param {attr} attr 属性
+     * @returns 
+     */
     function getCss(ele, attr) {
         var val = null,
             reg = null;
@@ -25,6 +30,44 @@ var utils = (function () {
             val = parseFloat(val);
         }
         return val;
+    }
+
+    /**
+     * @param {document} attr document属性
+     * @param {value} val document值（可选）
+     * @returns 
+     */
+    function win(attr, val) {
+        if (typeof val !== 'undefined') {
+            document.documentElement[attr] = val;
+            document.body[attr] = val;
+        }
+        return document.documentElement[attr] || document.body[attr];
+    }
+
+    /**
+     * @param {element} element 元素
+     * @returns 获取元素距离body的偏移量
+     */
+    function offset(element) {
+        var parent = element.offsetParent;
+        var l = null;
+        var t = null;
+        l += element.offsetLeft;
+        t += element.offsetTop;
+        while (parent) {
+            if (!flag) {
+                l += parent.clientWidth;
+                t += parent.clientHeight;
+            }
+            l += parent.offsetWidth;
+            t += parent.offsetTop;
+            parent = parent.offsetParent;
+        }
+        return {
+            left: l,
+            top: t
+        };
     }
 
     /**
@@ -360,6 +403,8 @@ var utils = (function () {
     }
     return {
         getCss: getCss,
+        win: win,
+        offset: offset,
         listToArray: listToArray,
         formatJson: formatJson,
         children: children,
